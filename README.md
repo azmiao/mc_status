@@ -1,6 +1,6 @@
 ## mc_status
 
-一个自用的hoshinobot的 mc数据查询 超简易插件
+一个自用的hoshinobot的 mc数据查询监控 超简易插件
 
 因为没有啥需求而且代码非常非常简单，应该不会考虑更新
 
@@ -33,6 +33,10 @@ https://github.com/azmiao/mc_status
     pip install mcstatus
     ```
 
-3. 在 HoshinoBot\hoshino\config\ `__bot__.py` 文件的 MODULES_ON 加入 'mc_status'
+3. 在 `mc_info.py` 最上面填写你的服务器ip和端口
+
+4. 在 HoshinoBot\hoshino\config\ `__bot__.py` 文件的 MODULES_ON 加入 'mc_status'
 
     然后重启 HoshinoBot
+
+5. 监控人员上线提醒默认关闭，需要开启的话请在群里发送'开启 mc_reminder'
