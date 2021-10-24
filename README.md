@@ -10,6 +10,9 @@
 
 https://github.com/azmiao/mc_status
 
+## 引流博客地址：
+https://www.594594.xyz/2021/10/24/mc_status_for_hoshino/
+
 ## 功能
 
 ```
