@@ -10,9 +10,6 @@
 
 https://github.com/azmiao/mc_status
 
-## 引流博客地址：
-https://www.594594.xyz/2021/10/24/mc_status_for_hoshino/
-
 ## 功能
 
 ```
@@ -43,3 +40,9 @@ https://www.594594.xyz/2021/10/24/mc_status_for_hoshino/
     然后重启 HoshinoBot
 
 5. 监控人员上线提醒默认关闭，需要开启的话请在群里发送'开启 mc_reminder'
+
+## 如果无法查询到，可能是你端口和配置的问题
+
+可以看我的这篇文章的补充部分解决
+
+https://www.594594.xyz/2021/10/24/mc_status_for_hoshino/
