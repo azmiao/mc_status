@@ -22,6 +22,7 @@ sv_help = '''
 [mc数据 ip] 查询该ip服务器，不带端口自动默认25565
 
 (自动推送服务器人数变动) 该功能无命令
+注：没反应就是你命令输错了
 '''.strip()
 
 sv = Service('mc_query', help_=sv_help, enable_on_default=True)
@@ -33,7 +34,7 @@ async def help(bot, ev):
     await bot.send(ev, sv_help)
 
 # 查mc数据
-@sv.on_rex(r'^mc数据 ?([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\)?(:[0-9]{1,5})?$')
+@sv.on_rex(r'^mc数据 ?([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})?(:[0-9]{1,5})?$')
 async def query_status(bot, ev):
     with open(current_dir, 'r', encoding = 'UTF-8') as f:
         f_data = json.load(f)
@@ -47,14 +48,14 @@ async def query_status(bot, ev):
             await bot.finish(ev, '该群还未绑定任何IP呢')
         ip = list(f_data[group_id].keys())[0]
     elif ip and (not port):
-        ip += 25565
+        ip += ':25565'
     else:
         ip += port
     msg = await get_status(ip)
     await bot.send(ev, msg)
 
 # 监控数据和取消监控
-@sv.on_rex(r'^(不要)?监控mc ?([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\)(:[0-9]{1,5})?$')
+@sv.on_rex(r'^(不要)?监控mc ?([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})(:[0-9]{1,5})?$')
 async def add_server(bot, ev):
     group_id = str(ev.group_id)
     is_lock = ev['match'].group(1)
@@ -63,7 +64,7 @@ async def add_server(bot, ev):
     if port:
         ip += port
     else:
-        ip += '25565'
+        ip += ':25565'
     is_lock = False if is_lock else True
     msg = await lock_or_unlock(is_lock, ip, group_id)
     await bot.send(ev, msg)
