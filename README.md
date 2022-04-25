@@ -13,15 +13,20 @@ https://github.com/azmiao/mc_status
 ## 功能
 
 ```
-命令如下：
-[如何加入mc服务器] 简单步骤
+[监控mc ip] 为本群增加监控该ip服务器，不带端口自动默认25565
 
-[mc数据] 查询当前服务器人数和延迟
+[不要监控mc ip] 不在为本群监控该ip服务器，不带端口自动默认25565
+
+[mc数据] 查询本群绑定的服务器，绑定多个默认查第一个
+
+[mc数据 ip] 查询该ip服务器，不带端口自动默认25565
+
+(自动推送服务器人数变动) 该功能无命令
 ```
 
 ## 简单食用教程：
 
-1. 下载或git clone本插件：
+1. git clone本插件：
 
     在 HoshinoBot\hoshino\modules 目录下使用以下命令拉取本项目
     ```
@@ -33,13 +38,11 @@ https://github.com/azmiao/mc_status
     pip install mcstatus
     ```
 
-3. 在 `mc_info.py` 最上面填写你的服务器ip和端口
-
-4. 在 HoshinoBot\hoshino\config\ `__bot__.py` 文件的 MODULES_ON 加入 'mc_status'
+3. 在 HoshinoBot\hoshino\config\ `__bot__.py` 文件的 MODULES_ON 加入 'mc_status'
 
     然后重启 HoshinoBot
 
-5. 监控人员上线提醒默认关闭，需要开启的话请在群里发送'开启 mc_reminder'
+4. 监控人员上线提醒默认关闭，需要开启的话请在群里发送'开启 mc_reminder'
 
 ## 如果无法查询到，可能是你端口和配置的问题
 
