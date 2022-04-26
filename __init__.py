@@ -21,7 +21,7 @@ sv_help = '''
 
 [mc数据 ip] 查询该ip服务器，不带端口自动默认25565
 
-(自动推送服务器人数变动) 该功能无命令
+(自动推送服务器人数变动) 分群功能，需群管理员发送："开启 mc_reminder"
 注：没反应就是你命令输错了
 '''.strip()
 
@@ -86,7 +86,7 @@ async def mc_poller():
             del_num = len(del_member)
             if flag == 'change':
                 svmc.logger.info(f'检测到MC服务器{ip}内玩家变化')
-                msg = f'检测到MC服务器{ip}内近 {time_set} 分钟内：'
+                msg = f'检测到MC服务器\n{ip}\n近 {time_set} 分钟内'
                 if add_num != 0:
                     msg += f'\n增加了 {add_num} 人:\n'
                     msg += ' | '.join(add_member)
