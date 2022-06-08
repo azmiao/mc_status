@@ -1,24 +1,24 @@
 import os
 import json
-from mcstatus import MinecraftServer
+from mcstatus import JavaServer, BedrockServer # 第一个java版，第二个基岩版(能查的东西太少了，就不写了)
 
 current_dir = os.path.join(os.path.dirname(__file__), 'server.json')
 
 # 查服务器信息
 async def get_status(ip):
-    server = MinecraftServer.lookup(ip)
+    server = JavaServer.lookup(ip)
     try:
         query = server.query()
         latency = server.ping()
-        player = ' | '.join(query.players.names)
-        msg = f'该服务器内目前有 {len(query.players.names)} 位玩家:\n {player}\n服务器延迟为 {latency} ms'
+        player = ' | '.join(query.players.names).encode("iso-8859-1").decode("utf-8", 'ignore')
+        msg = f'该服务器内目前有 {len(query.players.names)} 位玩家:\n {player}\n服务器延迟为 {round(latency,3)} ms'
     except Exception as e:
         msg = f'查询失败！错误明细：{e}'
     return msg
 
 # 判断是否有人员变动
 async def judge(ip, m_list):
-    server = MinecraftServer.lookup(ip)
+    server = JavaServer.lookup(ip)
     query = server.query()
     online_list = query.players.names
     del_member = []

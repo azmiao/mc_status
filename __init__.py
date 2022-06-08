@@ -13,13 +13,13 @@ if not os.path.exists(current_dir):
 
 time_set = 2 # 计划任务设置时间的间隔，单位：喵
 sv_help = '''
-[监控mc ip] 为本群增加监控该ip服务器，不带端口自动默认25565
+[监控mc 地址] 为本群增加监控该地址服务器，不带端口自动默认25565
 
-[不要监控mc ip] 不在为本群监控该ip服务器，不带端口自动默认25565
+[不要监控mc 地址] 不在为本群监控该地址服务器，不带端口自动默认25565
 
 [mc数据] 查询本群绑定的服务器，绑定多个默认查第一个
 
-[mc数据 ip] 查询该ip服务器，不带端口自动默认25565
+[mc数据 地址] 查询该地址服务器，不带端口自动默认25565
 
 (自动推送服务器人数变动) 分群功能，需群管理员发送："开启 mc_reminder"
 注：没反应就是你命令输错了
@@ -34,7 +34,7 @@ async def help(bot, ev):
     await bot.send(ev, sv_help)
 
 # 查mc数据
-@sv.on_rex(r'^mc数据 ?([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})?(:[0-9]{1,5})?$')
+@sv.on_rex(r'^mc数据 ?(\S+)?(:[0-9]{1,5})?$')
 async def query_status(bot, ev):
     with open(current_dir, 'r', encoding = 'UTF-8') as f:
         f_data = json.load(f)
@@ -55,7 +55,7 @@ async def query_status(bot, ev):
     await bot.send(ev, msg)
 
 # 监控数据和取消监控
-@sv.on_rex(r'^(不要)?监控mc ?([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})(:[0-9]{1,5})?$')
+@sv.on_rex(r'^(不要)?监控mc ?(\S+)?(:[0-9]{1,5})?$')
 async def add_server(bot, ev):
     group_id = str(ev.group_id)
     is_lock = ev['match'].group(1)
