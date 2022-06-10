@@ -34,7 +34,7 @@ async def help(bot, ev):
     await bot.send(ev, sv_help)
 
 # 查mc数据
-@sv.on_rex(r'^mc数据 ?(\S+?)(:[0-9]{1,5})?$')
+@sv.on_rex(r'^mc数据 ?(\S+?)?(:[0-9]{1,5})?$')
 async def query_status(bot, ev):
     with open(current_dir, 'r', encoding = 'UTF-8') as f:
         f_data = json.load(f)
