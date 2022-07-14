@@ -73,7 +73,7 @@ async def add_server(bot, ev):
 @svmc.scheduled_job('cron', minute=f'*/{time_set}')
 async def mc_poller():
     bot = get_bot()
-    glist_info = await sv.get_enable_groups()
+    glist_info = await svmc.get_enable_groups()
     with open(current_dir, 'r', encoding = 'UTF-8') as f:
         f_data = json.load(f)
     for group_id in list(f_data.keys()):
@@ -94,7 +94,7 @@ async def mc_poller():
                 if del_num != 0:
                     msg += f'\n减少了 {del_num} 人:\n'
                     msg += ' | '.join(del_member)
-                if group_id in glist_info:
+                if int(group_id) in glist_info:
                     await bot.send_group_msg(group_id=group_id, message=msg)
                 await replace_mem(group_id, ip, online_list)
             else:
